@@ -1,0 +1,182 @@
+/*noinspection CssUnknownTarget*/
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+/*Reset*/
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font: 14px "Raleway", Helvetica, Arial, sans-serif;
+    background: #333333;
+    margin: 0;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.head {
+    background: #222222;
+    height: 10vh;
+    width:100%;
+    padding: 1em;
+    color: #f05b4f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.head .title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.head .filter {
+    background: rgba(240,91,79,0.2);
+    border-radius: 3px;
+    display: inline;
+    padding: 0.25em;
+    margin: 1em;
+}
+
+.head .filter span{
+    padding: 1em;
+    cursor: pointer;
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #454545;
+    font-size: 2em;
+    margin: auto auto 1em;
+    transition: ease 0.8s;
+    width: 60%;
+    height: 10vh;
+    min-width: 300px;
+    border: 1px solid #555555;
+    border-radius: 2px;
+    box-shadow: 1px 0 2px #333333;
+    overflow: hidden;
+}
+
+li .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 10vh;
+}
+
+li .avatar {
+    height: 12vh;
+}
+
+li .name {
+    font-weight: bold;
+}
+
+li.active {
+    height: 70vh;
+    width: 70vw;
+    opacity: 1;
+}
+
+li.active .header {
+    background: #555555;
+}
+
+li .charts {
+    width:100%;
+    height:60vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+li .charts .ct-chart {
+    flex-grow: 3;
+    height: 90%;
+}
+
+.ct-chart.mm {
+    background: url("/images/mm.svg") no-repeat;
+    background-size: cover;
+}
+
+.ct-chart.rc {
+    background: url("/images/rc.svg") no-repeat;
+    background-size: cover;
+}
+
+.ct-chart .ct-series-a .ct-line{
+    stroke: #FFFFFF;
+}
+
+.ct-chart .ct-series-a .ct-point{
+    stroke: #ffffff;
+}
+
+.ct-chart .ct-label {
+    color: #94878A;
+    fill: #94878A;
+}
+
+.ct-chart .ct-grid {
+    stroke: #94878A;
+}
+
+.charts .key {
+    font-size: 0.5em;
+    border: 2px dotted #94878A;
+    border-radius: 5px;
+    padding: 3px;
+    margin-right: 1em;
+}
+
+.charts .key .student {
+    color: white;
+}
+
+.charts .key .average {
+    color: #f05b4f;
+}
+
+@media screen and (max-width: 500px) {
+    li .charts .ct-chart {
+        height: 45%;
+    }
+
+    li {
+        font-size:1.5em;
+    }
+
+    .charts .key *{
+        display: inline-block;
+    }
+
+    .ct-chart.mm {
+        background-size: 80%;
+    }
+
+    .ct-chart.rc {
+        background-size: 80%;
+    }
+
+    .head {
+        height: 15vh;
+    }
+
+    .head .filter {
+        padding: 1em;
+    }
+}

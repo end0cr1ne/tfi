@@ -1,0 +1,97 @@
+<div class="head">
+    <div class="title">{{title}}</div>
+    <div class="right">
+        <div class="filter">
+            <span class="alpha">A-Z</span>
+            <span class="rc">RC</span>
+            <span class="mm">MM</span>
+        </div>
+    </div>
+</div>
+
+<ul>
+    {{#each students}}
+        <li data-name="{{this.name}}" data-rc="{{this.rc.[2015]}}" data-mm="{{this.mm.[2015]}}">
+            <div class="header">
+                <img class="avatar" src="/images/{{this.sex}}.png">
+                <span class="name"> {{this.name}} </span>
+                <span class="score">RC:{{this.rc.[2015]}} MM:{{this.mm.[2015]}}</span>
+            </div>
+
+            <div class="charts">
+                <div class="ct-chart rc c{{@index}}"></div>
+                <div class="ct-chart mm c{{@index}}"></div>
+                <div class="key">
+                    <div class="student">Student</div>
+                    <div class="average">Average</div>
+                </div>
+            </div>
+        </li>
+    {{/each}}
+</ul>
+<script src="/javascripts/data.js"></script>
+<script src="/chartist-plugin-pointlabels/dist/chartist-plugin-pointlabels.min.js"></script>
+<script src="/chartist-plugin-axistitle/dist/chartist-plugin-axistitle.min.js"></script>
+<script>
+    $('li').on('mouseenter', function () {
+        $(this).addClass('active');
+    }).on('mouseleave', function () {
+        $(this).removeClass('active');
+    });
+
+    var amm = data.average.mm, arc = data.average.rc;
+    data.students.forEach(function (i, index) {
+        var rc = i.rc, mm = i.mm;
+        var dataMM = {
+            labels: ['2013', '2014', '2015'],
+            series: [[mm[2013], mm[2014], mm[2015]], [amm[2013], amm[2014], amm[2015]]]
+        };
+        var optsMM = {
+            lineSmooth: Chartist.Interpolation.none({
+                fillHoles: false
+            })
+        };
+        var dataRC = {
+            labels: ['2013', '2014', '2015'],
+            series: [[rc[2013], rc[2014], rc[2015]], [arc[2013], arc[2014], arc[2015]]]
+        };
+        var optsRC = {
+            lineSmooth: Chartist.Interpolation.none({
+                fillHoles: false
+            })
+        };
+
+        new Chartist.Line('.ct-chart.rc.c' + index, dataRC, optsRC);
+        new Chartist.Line('.ct-chart.mm.c' + index, dataMM, optsMM);
+    });
+
+    $('.filter .alpha').on('click',function(e){
+        var ul = $("ul");
+        var li = ul.children("li");
+
+        li.detach().sort(function(a,b){
+           return $(a).data('name').localeCompare($(b).data('name'));
+        });
+        ul.append(li);
+    });
+
+    $('.filter .rc').on('click',function(e){
+        var ul = $("ul");
+        var li = ul.children("li");
+
+        li.detach().sort(function(a,b){
+            return $(a).data('rc') > $(b).data('rc');
+        });
+        ul.append(li);
+    });
+
+    $('.filter .mm').on('click',function(e){
+        var ul = $("ul");
+        var li = ul.children("li");
+
+        li.detach().sort(function(a,b){
+            return $(a).data('mm') > $(b).data('mm');
+        });
+        ul.append(li);
+    });
+</script>
