@@ -151,6 +151,10 @@ li .charts .ct-chart {
     color: #f05b4f;
 }
 
+.filter .filt {
+    color: white;
+}
+
 @media screen and (max-width: 500px) {
     li .charts .ct-chart {
         height: 45%;
@@ -158,6 +162,8 @@ li .charts .ct-chart {
 
     li {
         font-size:1.5em;
+        width: 90%;
+        border-radius: 1px;
     }
 
     .charts .key *{
@@ -174,6 +180,8 @@ li .charts .ct-chart {
 
     .head {
         height: 15vh;
+        flex-flow: column;
+        flex-wrap: nowrap;
     }
 
     .head .filter {
